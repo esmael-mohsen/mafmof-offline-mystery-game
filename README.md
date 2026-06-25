@@ -22,28 +22,28 @@
 
 This repository represents a polished public portfolio release of the **MafMof MVP**.
 
-The current version includes **Case 01** with **5, 6, 7, and 8 player variants**. Screenshots and APK release builds will be added progressively as the public repository is finalized.
+The current version includes **Case 01** with **5, 6, 7, and 8 player variants**. The app is Android-first, fully offline during gameplay, and includes a GitHub Release build for testing.
 
 ---
 
 ## 📚 Table of Contents
 
-* [Overview](#-overview)
-* [Why This Project](#-why-this-project)
-* [Key Features](#-key-features)
-* [Gameplay Flow](#-gameplay-flow)
-* [Architecture](#️-architecture)
-* [Offline-First Data Model](#️-offline-first-data-model)
-* [Routing & Session Safety](#-routing--session-safety)
-* [Testing Strategy](#-testing-strategy)
-* [Screenshots](#-screenshots)
-* [Demo](#-demo)
-* [Getting Started](#-getting-started)
-* [Tech Stack](#-tech-stack)
-* [Current Scope](#-current-scope)
-* [Future Improvements](#-future-improvements)
-* [License](#-license)
-* [Author](#-author)
+- [Overview](#-overview)
+- [Why This Project](#-why-this-project)
+- [Key Features](#-key-features)
+- [Gameplay Flow](#-gameplay-flow)
+- [Architecture](#️-architecture)
+- [Offline-First Data Model](#️-offline-first-data-model)
+- [Routing & Session Safety](#-routing--session-safety)
+- [Testing Strategy](#-testing-strategy)
+- [Screenshots](#-screenshots)
+- [Demo & Release](#-demo--release)
+- [Getting Started](#-getting-started)
+- [Tech Stack](#-tech-stack)
+- [Current Scope](#-current-scope)
+- [Future Improvements](#-future-improvements)
+- [License](#-license)
+- [Author](#-author)
 
 ---
 
@@ -63,39 +63,39 @@ This project is an Android-first Flutter MVP focused on clean architecture, seed
 
 This codebase was built to solve real problems that appear in offline party-game applications:
 
-* **Role privacy during reveal**
+- **Role privacy during reveal**  
   Only the active player should see their role at the correct moment, reducing accidental reveals during shared-device gameplay.
 
-* **Idempotent database seeding**
+- **Idempotent database seeding**  
   Game content such as cases, roles, clues, and player variants is seeded from bundled JSON into SQLite using safe replacement logic, making repeated setup and reinstall flows predictable.
 
-* **Safe session handling**
+- **Safe session handling**  
   Game state is managed locally with Cubits, repositories, and Drift-backed persistence to reduce state leaks between game runs.
 
-* **Arabic-first / RTL experience**
+- **Arabic-first / RTL experience**  
   Screens are designed Arabic-first with RTL directionality, Arabic typography, and long-text friendly layouts.
 
-* **Offline-first gameplay**
+- **Offline-first gameplay**  
   The app does not depend on authentication, cloud sync, or a backend during gameplay, making it suitable for local in-person sessions.
 
-* **Portfolio-ready architecture**
+- **Portfolio-ready architecture**  
   The project demonstrates Flutter clean architecture, Drift/SQLite, BLoC/Cubit state management, go_router navigation, dependency injection, and automated tests.
 
 ---
 
 ## ✨ Key Features
 
-| Feature                  | Details                                                             |
-| ------------------------ | ------------------------------------------------------------------- |
-| 🕵️ Mystery cases        | Bundled Case 01 with roles, clues, and narrative flow               |
-| 👥 Player variants       | 5, 6, 7, and 8 player configurations                                |
-| 🎭 Role reveal           | Private per-player role reveal flow                                 |
-| 🗳️ Voting rounds        | Structured elimination voting flow                                  |
-| ⏱️ Game timer            | Configurable phase timer for host-led sessions                      |
-| 🔊 Sound effects         | Optional SFX through a safe audio service wrapper                   |
-| 🌙 Arabic-first / RTL    | Right-to-left UI, Arabic typography, and long-text friendly layouts |
-| 📴 100% offline gameplay | No internet dependency during the game session                      |
-| 🗄️ Local database       | Drift/SQLite seeded from bundled JSON assets                        |
+| Feature | Details |
+|---|---|
+| 🕵️ Mystery cases | Bundled Case 01 with roles, clues, and narrative flow |
+| 👥 Player variants | 5, 6, 7, and 8 player configurations |
+| 🎭 Role reveal | Private per-player role reveal flow |
+| 🗳️ Voting rounds | Structured elimination voting flow |
+| ⏱️ Game timer | Configurable phase timer for host-led sessions |
+| 🔊 Sound effects | Optional SFX through a safe audio service wrapper |
+| 🌙 Arabic-first / RTL | Right-to-left UI, Arabic typography, and long-text friendly layouts |
+| 📴 100% offline gameplay | No internet dependency during the game session |
+| 🗄️ Local database | Drift/SQLite seeded from bundled JSON assets |
 
 ---
 
@@ -149,14 +149,14 @@ lib/
 
 ### Key Architectural Decisions
 
-| Area                 | Decision                                                           |
-| -------------------- | ------------------------------------------------------------------ |
-| Local storage        | Drift/SQLite is used as the local source of truth                  |
-| State management     | BLoC/Cubit manages game session and UI state                       |
-| Routing              | go_router handles declarative navigation and route guards          |
-| Dependency injection | get_it and injectable organize services and repositories           |
-| Data flow            | Repository pattern separates data, domain, and presentation layers |
-| Content loading      | JSON assets seed playable case data into the local database        |
+| Area | Decision |
+|---|---|
+| Local storage | Drift/SQLite is used as the local source of truth |
+| State management | BLoC/Cubit manages game session and UI state |
+| Routing | go_router handles declarative navigation and route guards |
+| Dependency injection | get_it and injectable organize services and repositories |
+| Data flow | Repository pattern separates data, domain, and presentation layers |
+| Content loading | JSON assets seed playable case data into the local database |
 
 ---
 
@@ -176,13 +176,13 @@ On app startup, the local database is seeded with the available case variants. T
 
 The Drift schema covers the core gameplay entities:
 
-| Table             | Purpose                                       |
-| ----------------- | --------------------------------------------- |
-| `cases`           | Case metadata and narrative setup             |
-| `roles`           | Role definitions for each case/player variant |
-| `clues`           | Ordered clue content                          |
-| `sessions`        | Active game session state                     |
-| `session_players` | Player-to-role assignments for each session   |
+| Table | Purpose |
+|---|---|
+| `cases` | Case metadata and narrative setup |
+| `roles` | Role definitions for each case/player variant |
+| `clues` | Ordered clue content |
+| `sessions` | Active game session state |
+| `session_players` | Player-to-role assignments for each session |
 
 ---
 
@@ -192,10 +192,10 @@ Navigation is handled with `go_router`.
 
 The routing layer is designed to prevent invalid gameplay states, such as:
 
-* Opening a game stage without an active session
-* Reaching a private reveal screen at the wrong phase
-* Carrying stale session data into a new game
-* Returning to unsafe states after app restart or navigation changes
+- Opening a game stage without an active session
+- Reaching a private reveal screen at the wrong phase
+- Carrying stale session data into a new game
+- Returning to unsafe states after app restart or navigation changes
 
 This keeps shared-device gameplay safer and reduces accidental role or clue exposure.
 
@@ -229,27 +229,32 @@ flutter test --reporter expanded
 
 ## 📸 Screenshots
 
-| Screen               | Preview                    |
-| -------------------- | -------------------------- |
-| Home / Case Catalog  | 🖼️ Screenshot coming soon |
-| Case Details         | 🕵️ Screenshot coming soon |
-| Player Setup         | 👥 Screenshot coming soon  |
-| Role Reveal — Arabic | 🎭 Screenshot coming soon  |
-| Game Stage / Timer   | 🎬 Screenshot coming soon  |
-| Voting Round         | 🗳️ Screenshot coming soon |
-| Final Reveal         | 🏁 Screenshot coming soon  |
+| Screen | Preview |
+|---|---|
+| Home / Case Catalog | <img src="screenshots/01_home_case_catalog.png" width="220" /> |
+| Case Details | <img src="screenshots/02_case_details.png" width="220" /> |
+| Player Setup | <img src="screenshots/03_player_setup.png" width="220" /> |
+| Role Reveal — Arabic | <img src="screenshots/04_role_reveal.png" width="220" /> |
+| Game Stage / Timer | <img src="screenshots/05_game_stage_timer.png" width="220" /> |
+| Voting Round | <img src="screenshots/06_voting_round.png" width="220" /> |
+| Final Reveal | <img src="screenshots/07_final_reveal.png" width="220" /> |
 
-> Screenshots will be added from a real device or emulator run.
-> Placeholder previews are used until final portfolio screenshots are added to the `screenshots/` folder.
+> Screenshots are captured from the Arabic Android version of the app and stored in the `screenshots/` folder.
 
 ---
 
-## 🎬 Demo
+## 🎬 Demo & Release
 
-> 📱 APK demo build — coming soon.
-> 🎥 Short gameplay preview — coming soon.
+The latest Android APK build is available from the GitHub Releases page.
 
-For now, the project can be run locally using the setup steps below.
+- 📦 **Latest Release:** [View latest release](https://github.com/esmael-mohsen/mafmof-offline-mystery-game/releases/latest)
+- 📱 **Platform:** Android
+- 📴 **Runtime:** Fully offline after installation
+- 🌙 **Language:** Arabic-first / RTL
+
+### Run Locally
+
+You can also run the project locally using the setup steps below.
 
 ---
 
@@ -257,10 +262,10 @@ For now, the project can be run locally using the setup steps below.
 
 ### Prerequisites
 
-* Flutter SDK `3.x`
-* Dart SDK `3.x`
-* Android Studio or VS Code with Flutter extension
-* Android emulator or physical Android device
+- Flutter SDK `3.x`
+- Dart SDK `3.x`
+- Android Studio or VS Code with Flutter extension
+- Android emulator or physical Android device
 
 ### Setup
 
@@ -299,53 +304,53 @@ flutter build apk --release
 
 ## 📦 Tech Stack
 
-| Layer                | Technology                                                |
-| -------------------- | --------------------------------------------------------- |
-| Framework            | Flutter / Dart                                            |
-| State management     | flutter_bloc / Cubit                                      |
-| Local database       | Drift / SQLite                                            |
-| Navigation           | go_router                                                 |
-| Dependency injection | get_it / injectable                                       |
-| JSON serialization   | json_serializable                                         |
-| Audio                | audioplayers with SafeAudioService wrapper                |
-| Code generation      | build_runner, drift_dev, injectable_generator             |
-| Typography           | Cairo, Amiri, Aref Ruqaa Ink, Manrope, Cormorant Garamond |
-| CI                   | GitHub Actions                                            |
+| Layer | Technology |
+|---|---|
+| Framework | Flutter / Dart |
+| State management | flutter_bloc / Cubit |
+| Local database | Drift / SQLite |
+| Navigation | go_router |
+| Dependency injection | get_it / injectable |
+| JSON serialization | json_serializable |
+| Audio | audioplayers with SafeAudioService wrapper |
+| Code generation | build_runner, drift_dev, injectable_generator |
+| Typography | Cairo, Amiri, Aref Ruqaa Ink, Manrope, Cormorant Garamond |
+| CI | GitHub Actions |
 
 ---
 
 ## ✅ Current Scope
 
-* Case 01 is included as the first playable mystery case.
-* The app supports 5, 6, 7, and 8 player variants.
-* Gameplay is fully offline and local-device based.
-* The current public release focuses on Android.
-* The project is prepared as a Flutter portfolio case study.
+- Case 01 is included as the first playable mystery case.
+- The app supports 5, 6, 7, and 8 player variants.
+- Gameplay is fully offline and local-device based.
+- The current public release focuses on Android.
+- The project is prepared as a Flutter portfolio case study.
+- Android APK builds are available from GitHub Releases.
 
 ---
 
 ## 🚫 Not Included Yet
 
-* Online multiplayer
-* User accounts
-* Cloud sync
-* In-app purchases
-* Custom case editor
-* Public APK release
-* Final screenshots and demo video
+- Online multiplayer
+- User accounts
+- Cloud sync
+- In-app purchases
+- Custom case editor
+- Gameplay demo video
+- English localization
 
 ---
 
 ## 🔮 Future Improvements
 
-* [ ] Add more playable cases with different role configurations
-* [ ] Add a replay or spectator mode for the host
-* [ ] Add animated role card transitions
-* [ ] Add English localization for wider accessibility
-* [ ] Add a custom case content management screen
-* [ ] Add tablet-optimized layouts
-* [ ] Publish APK release and short gameplay demo
-* [ ] Add final portfolio screenshots
+- [ ] Add more playable cases with different role configurations
+- [ ] Add a replay or spectator mode for the host
+- [ ] Add animated role card transitions
+- [ ] Add English localization for wider accessibility
+- [ ] Add a custom case content management screen
+- [ ] Add tablet-optimized layouts
+- [ ] Publish a short gameplay demo video
 
 ---
 
@@ -353,7 +358,7 @@ flutter build apk --release
 
 This project is licensed under the [MIT License](LICENSE).
 
-Audio assets are sourced from OpenGameArt under CC0 and CC-BY 3.0 licenses.
+Audio assets are sourced from OpenGameArt under CC0 and CC-BY 3.0 licenses.  
 See [`docs/audio_licenses.md`](docs/audio_licenses.md) for attribution details.
 
 ---
@@ -362,7 +367,7 @@ See [`docs/audio_licenses.md`](docs/audio_licenses.md) for attribution details.
 
 **Esmael Mohsen**
 
-* GitHub: [@esmael-mohsen](https://github.com/esmael-mohsen)
+- GitHub: [@esmael-mohsen](https://github.com/esmael-mohsen)
 
 ---
 
