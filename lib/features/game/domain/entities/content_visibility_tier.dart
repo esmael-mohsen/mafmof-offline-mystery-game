@@ -1,0 +1,4 @@
+enum ContentVisibilityTier {
+  summary,
+  private,
+}

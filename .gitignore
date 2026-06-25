@@ -1,45 +1,158 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
-.DS_Store
-.atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
-
-# IntelliJ related
-*.iml
-*.ipr
-*.iws
-.idea/
-
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
-# Flutter/Dart/Pub related
+# ─────────────────────────────────────────────────────────────────────────────
+# Flutter / Dart / Pub
+# ─────────────────────────────────────────────────────────────────────────────
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
+.packages
 .pub-cache/
 .pub/
 /build/
+build/
 
-# Symbolication related
+# Dart generated code
+*.g.dart
+*.freezed.dart
+
+# Symbolication / obfuscation
 app.*.symbols
-
-# Obfuscation related
 app.*.map.json
 
-# Android Studio will place build artifacts here
+# ─────────────────────────────────────────────────────────────────────────────
+# Android
+# ─────────────────────────────────────────────────────────────────────────────
 /android/app/debug
 /android/app/profile
 /android/app/release
+android/.gradle/
+android/app/.cxx/
+android/local.properties
+android/key.properties
+android/app/*.jks
+android/app/*.keystore
+android/*.jks
+android/*.keystore
+android/*.hprof
+android/java_pid*.hprof
+android/hs_err_pid*.log
+.gradle/
+.gradle-cache/
+
+# ─────────────────────────────────────────────────────────────────────────────
+# iOS / macOS / Xcode
+# ─────────────────────────────────────────────────────────────────────────────
+**/ios/Pods/
+**/macos/Pods/
+*.xcworkspace/xcuserdata/
+DerivedData/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+
+# ─────────────────────────────────────────────────────────────────────────────
+# IDE
+# ─────────────────────────────────────────────────────────────────────────────
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Secrets & credentials — NEVER commit
+# ─────────────────────────────────────────────────────────────────────────────
+.env
+.env.*
+*.env
+key.properties
+*.jks
+*.keystore
+service-account.json
+*-service-account.json
+google-services.json
+GoogleService-Info.plist
+secrets.yaml
+secrets.json
+
+# ─────────────────────────────────────────────────────────────────────────────
+# AI agent / Spec Kit / planning files — local only, never publish
+# ─────────────────────────────────────────────────────────────────────────────
+.specify/
+.speckit/
+spec-kit/
+specs/
+.codex/
+.cursor/
+.continue/
+.kilo/
+.kilocode/
+.claude/
+.gemini/
+.windsurf/
+.roo/
+.playwright-cli/
+.tmp/
+memory/
+plans/
+tasks/
+AGENTS.md
+GEMINI.md
+setup_output.json
+setup_tasks.json
+
+# AI planning docs (not public user docs)
+docs/plan.md
+docs/implementation_plan.md
+docs/superpowers/
+implementation-plan.md
+plan.md
+spec.md
+specs.md
+requirements.generated.md
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Build artifacts / release binaries — not for source repos
+# ─────────────────────────────────────────────────────────────────────────────
+release/
+output/
+*.apk
+*.aab
+*.ipa
+*.zip
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Logs
+# ─────────────────────────────────────────────────────────────────────────────
+*.log
+flutter_*.log
+
+# ─────────────────────────────────────────────────────────────────────────────
+# OS junk
+# ─────────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Python / misc
+# ─────────────────────────────────────────────────────────────────────────────
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.swp
+.svn/
+.swiftpm/
+migrate_working_dir/
